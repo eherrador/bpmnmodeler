@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BPMN_MVC", "BPMN_MVC\BPMN_MVC.csproj", "{7361D77E-7768-468C-B74A-608B358140D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7361D77E-7768-468C-B74A-608B358140D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7361D77E-7768-468C-B74A-608B358140D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7361D77E-7768-468C-B74A-608B358140D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7361D77E-7768-468C-B74A-608B358140D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31172B59-4945-42EA-8470-C3F836217948}
+	EndGlobalSection
+EndGlobal
