@@ -26,7 +26,8 @@
 <input type="text" id="fileName-txtbox">
 <button id="zoomin-button">Zoom In</button>
 <button id="zoomout-button">Zoom Out</button>
-<button id="centrar-button">Centrar</button>
+<button id="centrar-button">Centrar Diagrama</button>
+<button id="centrarelemento-button">Centrar Elemento</button>
 <br>
 <hr />
 <div id="canvas"></div>
@@ -120,6 +121,25 @@
         canvas.zoom('fit-viewport');
     }
 
+    function centrarElemento() {
+        var selectedElements = bpmnModeler.get('selection').get();
+        //alert(selectedElements[0].id);
+        var canvas = bpmnModeler.get('canvas');
+        var currentViewbox = canvas.viewbox();
+
+        var elementMid = {
+            x: selectedElements[0].x + selectedElements[0].width / 2,
+            y: selectedElements[0].y + selectedElements[0].height / 2
+        };
+
+        canvas.viewbox({
+            x: elementMid.x - currentViewbox.width / 2,
+            y: elementMid.y - currentViewbox.height / 2,
+            width: currentViewbox.width,
+            height: currentViewbox.height
+        });
+    }
+
     // load external diagram file via AJAX and open it
     $.get(diagramUrl, openDiagram, 'text');
 
@@ -128,5 +148,6 @@
     $('#zoomin-button').click(zoominDiagram);
     $('#zoomout-button').click(zoomOutDiagram);
     $('#centrar-button').click(centrarDiagram);
+    $('#centrarelemento-button').click(centrarElemento);
 </script>
 
