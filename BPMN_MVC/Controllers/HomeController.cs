@@ -28,7 +28,7 @@ namespace BPMN_MVC.Controllers
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
         public ActionResult AbrirDiagrama()
         {
             ViewBag.Message = "Modificar Diagrama";
@@ -37,7 +37,7 @@ namespace BPMN_MVC.Controllers
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
         public ActionResult NuevoDiagrama()
         {
             ViewBag.Message = "Nuevo Diagrama";
