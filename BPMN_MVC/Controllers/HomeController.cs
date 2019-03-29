@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using BPMN;
 using System.Drawing;
+using System.IO;
 
 namespace BPMN_MVC.Controllers
 {
@@ -79,7 +80,13 @@ namespace BPMN_MVC.Controllers
                 }
                 sCon.Dispose();
             }
-            ViewBag.xmlBPMN = ConstruyeDiagramaBPMN(actividades, nombreProceso);
+            string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+            string bpmnFile = ConstruyeDiagramaBPMN(actividades, nombreProceso);
+
+            //ViewBag.BPMNDiagramURL = bpmnFile;
+            ViewBag.BPMNDiagramURL = baseUrl + bpmnFile;
+            //ViewBag.BPMNDiagramURL = "http://localhost:49934/App_Data/Temporal201903281409474313.bpmn";
+            //ViewBag.BPMNDiagramURL = "https://raw.githubusercontent.com/bayroxyz/bayroxyz.github.io/master/assets/Temporal201903281357385983.bpmn";
 
             return View();
         }
@@ -184,8 +191,18 @@ namespace BPMN_MVC.Controllers
                 x1 = x1 + 110;
                 x2 = x2 + 120;
             }
-            return editor.Serialize();
-            //editor.Save("diagrama.bpmn"); //(nombreProceso.Trim(' ').ToLower() + ".bpmn");
+
+            //editor.Save("diagrama.bpmn"); //(nombreProceso + ".bpmn");
+
+            string xmlBPMN = editor.Serialize();
+            var fileName = "Temporal" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".bpmn";
+            var fileToSave = Path.Combine(Server.MapPath("~/App_Data/"), fileName);
+            TextWriter writeFile = new StreamWriter(fileToSave);
+            writeFile.WriteLine(xmlBPMN);
+            writeFile.Flush();
+            writeFile.Close();
+            writeFile = null;
+            return "App_Data/" + fileName;
         }
     }
 }

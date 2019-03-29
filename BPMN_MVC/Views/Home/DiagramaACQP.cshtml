@@ -19,8 +19,7 @@
 <div id="canvas"></div>
 
 <script type="text/javascript">
-    var xmlBPMN = @ViewBag.xmlBPMN;
-    var diagramUrl = "negentropy";
+    var diagramUrl = '@ViewBag.BPMNDiagramURL';
     alert(diagramUrl);
     var bpmnModeler = new BpmnJS({
         container: '#canvas',
@@ -30,7 +29,7 @@
 
     function openDiagram(bpmnXML) {
         // import diagram
-        bpmnModeler.importXML(xmlBPMN, function (err) {
+        bpmnModeler.importXML(bpmnXML, function (err) {
             if (err) {
                 return console.error('could not import BPMN 2.0 diagram', err);
             }
@@ -54,5 +53,6 @@
 
     // load external diagram file via AJAX and open it
     $.get(diagramUrl, openDiagram, 'text');
+    //$.get("/App_Data/Temporal201903281445502619.bpmn", openDiagram);
 </script>
 
